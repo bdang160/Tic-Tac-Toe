@@ -59,38 +59,61 @@ public class TicTacToe {
 		whoseTurn = Piece.X; //First player is X
 	}
 
-	//Checks a given direction to see if the player whoseTurn it currently
-	//is has TicTacToe. Returns true if they do have TicTacToe
-	public boolean checkLines(int xaxis, int yaxis, Direction dir) {
-		boolean answer = false;
-		int xCurr = xaxis;
-		int yCurr = yaxis;
-		int tally = 1;
-		
-		while (0 <= xaxis && xaxis <= 2 && 0 <= yaxis && yaxis <= 2) {
-			xCurr += xdir;
-			yCurr += ydir;
-			if (grid[xCurr][yCurr] == whoseTurn)
+	//Checks all possible directions that could give a tic-tac-toe
+	public boolean checkLines() {
+
+		int tally = 0;
+		//Checking horizontal lines
+		for (int row = 0; row < 3; row++) {
+			tally = 0;
+			for (int col = 0; col < 3; col++) {
+				if (grid[row][col] == whoseTurn) {
+					tally++;
+				}
+			}
+			if (tally == 3)
+				return true;
+		}
+
+		//Checking Vertical lines
+		for (int col = 0; col < 3; col++) {
+			tally = 0;
+			for (int row = 0; row < 3; row++) {
+				if (grid[row][col] == whoseTurn) {
+					tally++;
+				}
+			}
+			if (tally == 3)
+				return true;
+		}
+
+		//Diagonal up
+		tally = 0;
+		for (int row = 0; row < 3; row++) {
+			if (grid[row][row] == whoseTurn) {
 				tally++;
+			}
 		}
-		if (tally >= 3)
-			answer = true;
-		
-		return answer;
-	}
-	
-	//Returns true if hte player has tic tac toe
-	public boolean endgame(int xaxis, int yaxis) {
-		//Checks every possibility of checkLines to see if the player has
-		//Tic tac toe is some direction
-		if (checkLines(xaxis, yaxis, Direction.VERTICAL) ||
-				checkLines(xaxis, yaxis, Direction.HORIZONTAL) ||
-				checkLines(xaxis, yaxis, Direction.DIAGONALUP) ||
-				checkLines(xaxis, yaxis, Direction.DIAGONALDOWN)) {
+		if (tally == 3)
 			return true;
+
+		//Diagonal down
+		tally = 0;
+		for (int row = 2; row >= 0 ; row--) {
+			for (int col = 0; col < 3; col++) {
+				if (grid[row][col] == whoseTurn) {
+					tally++;
+				}
+			}
 		}
+		if (tally == 3)
+			return true;
+
+
+
 		return false;
 	}
+
 	//Returns a string of the Tic-Tac-Toe grid
 	public String toString() {
 		String retVal = "";
