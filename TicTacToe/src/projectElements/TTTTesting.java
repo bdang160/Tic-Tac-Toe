@@ -27,16 +27,18 @@ public class TTTTesting {
 		TicTacToe test = new TicTacToe();
 		
 		test.setGrid(0, 0, Piece.X);
-		test.setGrid(1, 0, Piece.X);
+		test.setGrid(1, 0, Piece.O);
 		test.setGrid(2, 0, Piece.X);
 		
-		assertTrue(test.checkLines());
+		assertFalse(test.checkLines());
+		test.reset();
 		
 		test.setGrid(0, 0, Piece.X);
 		test.setGrid(0, 1, Piece.X);
 		test.setGrid(0, 2, Piece.X);
 		
 		assertTrue(test.checkLines());
+		test.reset();
 		
 		test.setGrid(0, 2, Piece.X);
 		test.setGrid(1, 1, Piece.X);
