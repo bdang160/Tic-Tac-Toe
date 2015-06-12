@@ -18,9 +18,6 @@ public class TicTacToe {
 	//with 0,0 at bottom left.
 
 	Piece whoseTurn; //Variable for whose turn it is
-	public enum Direction{
-		VERTICAL, HORIZONTAL, DIAGONALDOWN, DIAGONALUP;
-	}
 
 	//Constructor for TicTacToe
 	public TicTacToe() {
@@ -29,6 +26,7 @@ public class TicTacToe {
 
 	//Sets a certain part of the grid to a certain
 	//Only accepts values between 0-2
+	//Used for debugging
 	public void setGrid(int xaxis, int yaxis, Piece piece) {
 		if (0 <= xaxis && xaxis <= 2 && 
 				0 <= yaxis && yaxis <= 2) {
@@ -36,16 +34,40 @@ public class TicTacToe {
 		}
 	}
 
+	//Sets permanently sets the grid piece to current term
+	public void setPermGrid(int xaxis, int yaxis) {
+		if (0 <= xaxis && xaxis <= 2 && 
+				0 <= yaxis && yaxis <= 2 &&
+				grid[yaxis][xaxis] == Piece.NONE) {
+			grid[yaxis][xaxis] = whoseTurn;
+			changeWhoseTurn();
+		}
+	}
+
+	//Returns the value in the grid postiion (x, y)
+	public Piece getGrid(int xaxis, int yaxis) {
+		if (0 <= xaxis && xaxis <= 2 && 
+				0 <= yaxis && yaxis <= 2) {
+			return grid[yaxis][xaxis];
+		}
+		return Piece.NONE;
+	}
+
 	//Sets whoseTurn it is
 	public void setWhoseTurn(Piece piece) {
 		whoseTurn = piece;
+	}
+
+	//Get whoseTurn it is
+	public Piece getWhoseTurn() {
+		return whoseTurn;
 	}
 
 	//Changes whose turn it is
 	public void changeWhoseTurn() {
 		if (whoseTurn == Piece.X)
 			whoseTurn = Piece.O;
-		if (whoseTurn == Piece.O)
+		else 
 			whoseTurn = Piece.X;
 	}
 

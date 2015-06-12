@@ -46,5 +46,15 @@ public class TTTTesting {
 		
 		assertTrue(test.checkLines());
 	}
+	
+	@Test
+	public void changeTurns() {
+		TicTacToe test = new TicTacToe();
+		test.setPermGrid(0, 2);
+		System.out.println(test);
+		
+		test.setPermGrid(1, 2);
+		System.out.println(test);
+	}
 
 }
