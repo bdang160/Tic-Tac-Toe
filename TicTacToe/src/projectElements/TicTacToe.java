@@ -40,7 +40,6 @@ public class TicTacToe {
 				0 <= yaxis && yaxis <= 2 &&
 				grid[yaxis][xaxis] == Piece.NONE) {
 			grid[yaxis][xaxis] = whoseTurn;
-			changeWhoseTurn();
 		}
 	}
 
@@ -121,12 +120,14 @@ public class TicTacToe {
 
 		//Diagonal down
 		tally = 0;
+		int col = 0;
 		for (int row = 2; row >= 0 ; row--) {
-			for (int col = 0; col < 3; col++) {
-				if (grid[row][col] == whoseTurn) {
-					tally++;
-				}
+			
+			if (grid[row][col] == whoseTurn) {
+				tally++;
 			}
+			col++;
+
 		}
 		if (tally == 3)
 			return true;
@@ -139,7 +140,8 @@ public class TicTacToe {
 	//Returns a string of the Tic-Tac-Toe grid
 	public String toString() {
 		String retVal = "";
-		for (int row = 2; row >= 0; row--) {
+		//Notice how it prints bottom row first
+		for (int row = 2; row >= 0; row--) { 
 			for (int col = 0; col < 3; col++) {
 				if (grid[row][col] == Piece.X)
 					retVal += Piece.X;
