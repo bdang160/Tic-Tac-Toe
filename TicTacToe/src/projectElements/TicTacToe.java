@@ -35,12 +35,14 @@ public class TicTacToe {
 	}
 
 	//Sets permanently sets the grid piece to current term
-	public void setPermGrid(int xaxis, int yaxis) {
+	public boolean setPermGrid(int xaxis, int yaxis) {
 		if (0 <= xaxis && xaxis <= 2 && 
 				0 <= yaxis && yaxis <= 2 &&
 				grid[yaxis][xaxis] == Piece.NONE) {
 			grid[yaxis][xaxis] = whoseTurn;
+			return true;
 		}
+		return false;
 	}
 
 	//Returns the value in the grid postiion (x, y)

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TicTacToeGUI {
 
@@ -27,7 +28,7 @@ public class TicTacToeGUI {
 	private JButton btnNine;
 	private JLabel turnLabel;
 	private TicTacToe grid;
-	private boolean endgame;
+	private int buttonsPressed;
 
 	/**
 	 * Launch the application.
@@ -49,7 +50,7 @@ public class TicTacToeGUI {
 	 * Create the application.
 	 */
 	public TicTacToeGUI() {
-		endgame = false;
+		buttonsPressed = 0;
 		grid = new TicTacToe();
 		initialize();
 	}
@@ -73,26 +74,7 @@ public class TicTacToeGUI {
 		btnOne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(0, 2); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(0, 2).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+				whatButtonsDo(0, 2, e);//BUTTON CODE
 			}
 		});
 		btnOne.setBounds(27, 36, 50, 50);
@@ -102,26 +84,7 @@ public class TicTacToeGUI {
 		btnTwo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(1, 2); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(1, 2).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+				whatButtonsDo(1, 2, e);//BUTTON CODE
 			}
 		});
 		btnTwo.setBounds(109, 36, 50, 50);
@@ -131,26 +94,7 @@ public class TicTacToeGUI {
 		btnThree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(2, 2); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(2, 2).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+				whatButtonsDo(2, 2, e);//BUTTON CODE
 			}
 		});
 		btnThree.setBounds(192, 36, 50, 50);
@@ -160,26 +104,7 @@ public class TicTacToeGUI {
 		btnFour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(0, 1); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(0, 1).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+				whatButtonsDo(0, 1, e);//BUTTON CODE
 			}
 		});
 		btnFour.setBounds(27, 97, 50, 50);
@@ -189,26 +114,7 @@ public class TicTacToeGUI {
 		btnFive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(1, 1); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(1, 1).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+				whatButtonsDo(1, 1, e);//BUTTON CODE
 			}
 		});
 		btnFive.setBounds(109, 97, 50, 50);
@@ -218,26 +124,7 @@ public class TicTacToeGUI {
 		btnSix.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(2, 1); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(2, 1).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+				whatButtonsDo(2, 1, e);//BUTTON CODE
 			}
 		});
 		btnSix.setBounds(192, 97, 50, 50);
@@ -247,26 +134,7 @@ public class TicTacToeGUI {
 		btnSeven.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(0, 0); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(0, 0).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+				whatButtonsDo(0, 0, e);//BUTTON CODE
 			}
 		});
 		btnSeven.setBounds(27, 158, 50, 50);
@@ -276,26 +144,7 @@ public class TicTacToeGUI {
 		btnEight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(1, 0); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(1, 0).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+				whatButtonsDo(1, 0, e);//BUTTON CODE
 			}
 		});
 		btnEight.setBounds(109, 158, 50, 50);
@@ -303,28 +152,8 @@ public class TicTacToeGUI {
 
 		btnNine = new JButton(grid.getGrid(2, 0).toString());
 		btnNine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if (grid.checkLines()) {
-					turnLabel.setText("The winner is " + grid.getWhoseTurn());
-					System.out.println(grid.toString()); //Testing
-				}
-				else {
-					grid.setPermGrid(2, 0); //Sets grid piece
-					((JButton) e.getSource()). //Changes text
-					setText(grid.getGrid(2, 0).toString());
-					if (grid.checkLines()) {
-						//Changes text if tic-tac-toe
-						turnLabel.
-						setText("The winner is " + grid.getWhoseTurn());
-					}
-					else {
-						//Changes text to next turn
-						grid.changeWhoseTurn();
-						turnLabel.
-						setText("Current Turn: " + grid.getWhoseTurn());
-					}
-				}
+			public void actionPerformed(ActionEvent e) {	
+				whatButtonsDo(2, 0, e); //BUTTON CODE
 			}
 		});
 		btnNine.setBounds(192, 158, 50, 50);
@@ -336,22 +165,49 @@ public class TicTacToeGUI {
 		frame.getContentPane().add(turnLabel);
 	}
 	
-	private void whatButtonsDo(int row, int col) {
+	//One method to do what all the buttons do
+	private void whatButtonsDo(int row, int col, ActionEvent e) {
+		
+		
+		//Makes the text display winner if tic-tac-toe
 		if (grid.checkLines()) {
 			turnLabel.setText("The winner is " + grid.getWhoseTurn());
 		}
+		else if (buttonsPressed >= 9 && !grid.checkLines()) {
+			turnLabel.setText("Draw");
+			
+		}
 		else {
-			grid.setPermGrid(row, col); //Sets grid piece
+			//Sets grid piece
+			if (grid.setPermGrid(row, col)) {
+				grid.changeWhoseTurn();
+				buttonsPressed++; //Increases number of buttons pressed
+			}
+			
+			((JButton) e.getSource()). //Changes text
+						setText(grid.getGrid(row, col).toString());
+			
+			//Changes color of text
+			if (grid.getGrid(row, col).toString().equals("x ")) {
+				((JButton) e.getSource()).setForeground(Color.BLUE);
+			}
+			else if (grid.getGrid(row, col).toString().equals("o ")) {
+				((JButton) e.getSource()).setForeground(Color.RED);
+			}
+			
+			//CHecking if game over
 			if (grid.checkLines()) {
 				//Changes text if tic-tac-toe
-				turnLabel.
-				setText("The winner is " + grid.getWhoseTurn());
+				turnLabel.setText("The winner is " + grid.getWhoseTurn());
 			}
+			//Checks if all buttons presed
+			else if (buttonsPressed >= 9 && !grid.checkLines()) {
+				turnLabel.setText("Draw");
+			}
+			//Otherwise continues
 			else {
 				//Changes text to next turn
-				grid.changeWhoseTurn();
-				turnLabel.
-				setText("Current Turn: " + grid.getWhoseTurn());
+				turnLabel.setText("Current Turn: " + grid.getWhoseTurn());
 			}
 		}
 	}
