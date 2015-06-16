@@ -36,11 +36,11 @@ public class TicTacToe {
 
 	//Sets permanently sets the grid piece to current term
 	public boolean setPermGrid(int xaxis, int yaxis) {
-		if (0 <= xaxis && xaxis <= 2 && 
+		if (0 <= xaxis && xaxis <= 2 && //Must be in bounds
 				0 <= yaxis && yaxis <= 2 &&
-				grid[yaxis][xaxis] == Piece.NONE) {
-			grid[yaxis][xaxis] = whoseTurn;
-			return true;
+				grid[yaxis][xaxis] == Piece.NONE) { //Must not have a piece
+			grid[yaxis][xaxis] = whoseTurn; //Sets piece
+			return true; 
 		}
 		return false;
 	}
@@ -82,15 +82,23 @@ public class TicTacToe {
 		whoseTurn = Piece.X; //First player is X
 	}
 
-	//Checks all possible directions that could give a tic-tac-toe
+	//Returns true if either side has tic-tac-toe
 	public boolean checkLines() {
+		if (checkLinesHelper(Piece.X) || checkLinesHelper(Piece.O)) {
+			return true;
+			
+		}
+		return false;
+	}
+	//Checks all possible directions that could give a tic-tac-toe
+	public boolean checkLinesHelper(Piece input) {
 
 		int tally = 0;
 		//Checking horizontal lines
 		for (int row = 0; row < 3; row++) {
 			tally = 0;
 			for (int col = 0; col < 3; col++) {
-				if (grid[row][col] == whoseTurn) {
+				if (grid[row][col] == input) {
 					tally++;
 				}
 			}
@@ -102,7 +110,7 @@ public class TicTacToe {
 		for (int col = 0; col < 3; col++) {
 			tally = 0;
 			for (int row = 0; row < 3; row++) {
-				if (grid[row][col] == whoseTurn) {
+				if (grid[row][col] == input) {
 					tally++;
 				}
 			}
@@ -113,7 +121,7 @@ public class TicTacToe {
 		//Diagonal up
 		tally = 0;
 		for (int row = 0; row < 3; row++) {
-			if (grid[row][row] == whoseTurn) {
+			if (grid[row][row] == input) {
 				tally++;
 			}
 		}
@@ -125,7 +133,7 @@ public class TicTacToe {
 		int col = 0;
 		for (int row = 2; row >= 0 ; row--) {
 			
-			if (grid[row][col] == whoseTurn) {
+			if (grid[row][col] == input) {
 				tally++;
 			}
 			col++;

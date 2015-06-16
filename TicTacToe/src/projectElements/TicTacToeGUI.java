@@ -169,19 +169,38 @@ public class TicTacToeGUI {
 	private void whatButtonsDo(int row, int col, ActionEvent e) {
 		
 		
-		//Makes the text display winner if tic-tac-toe
+		//If already tic-tac-toe, does nothing but change label
 		if (grid.checkLines()) {
 			turnLabel.setText("The winner is " + grid.getWhoseTurn());
 		}
+		//If no tic-tac-toe but all buttons pressed, then it's a draw
 		else if (buttonsPressed >= 9 && !grid.checkLines()) {
 			turnLabel.setText("Draw");
 			
 		}
+		//Otherwise continues game
 		else {
 			//Sets grid piece
 			if (grid.setPermGrid(row, col)) {
-				grid.changeWhoseTurn();
-				buttonsPressed++; //Increases number of buttons pressed
+				//The order of these if statements really matter
+				//Do not change
+				
+				//CHecking if game over
+				if (grid.checkLines()) {
+					//Changes text if tic-tac-toe
+					turnLabel.setText("The winner is " + grid.getWhoseTurn());
+				}
+				//Otherwise continues the game
+				else {
+					grid.changeWhoseTurn();
+					turnLabel.setText("Current Turn: " + grid.getWhoseTurn());
+					buttonsPressed++; //Increases number of buttons pressed
+				}
+				//Checks if all buttons presed
+				if (buttonsPressed >= 9 && !grid.checkLines()) {
+					turnLabel.setText("Draw");
+				}
+				
 			}
 			
 			((JButton) e.getSource()). //Changes text
@@ -195,20 +214,7 @@ public class TicTacToeGUI {
 				((JButton) e.getSource()).setForeground(Color.RED);
 			}
 			
-			//CHecking if game over
-			if (grid.checkLines()) {
-				//Changes text if tic-tac-toe
-				turnLabel.setText("The winner is " + grid.getWhoseTurn());
-			}
-			//Checks if all buttons presed
-			else if (buttonsPressed >= 9 && !grid.checkLines()) {
-				turnLabel.setText("Draw");
-			}
-			//Otherwise continues
-			else {
-				//Changes text to next turn
-				turnLabel.setText("Current Turn: " + grid.getWhoseTurn());
-			}
+			
 		}
 	}
 }
