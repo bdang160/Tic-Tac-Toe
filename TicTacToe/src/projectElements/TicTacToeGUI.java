@@ -14,6 +14,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
+/**
+ * 
+ * @author Bryan Dang
+ * @date June 8, 2015
+ * 
+ */
+
 public class TicTacToeGUI {
 
 	private JFrame frame;
@@ -161,8 +168,28 @@ public class TicTacToeGUI {
 
 		turnLabel = new JLabel("Current Turn: x");
 		turnLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		turnLabel.setBounds(27, 219, 176, 14);
+		turnLabel.setBounds(10, 219, 176, 14);
 		frame.getContentPane().add(turnLabel);
+		
+		JButton resetBtn = new JButton("Reset");
+		resetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				buttonsPressed = 0;
+				turnLabel.setText("Current Turn: x");
+				btnOne.setText("-");
+				btnTwo.setText("-");
+				btnThree.setText("-");
+				btnFour.setText("-");
+				btnFive.setText("-");
+				btnSix.setText("-");
+				btnSeven.setText("-");
+				btnEight.setText("-");
+				btnNine.setText("-");
+				grid = new TicTacToe();
+			}
+		});
+		resetBtn.setBounds(167, 219, 89, 23);
+		frame.getContentPane().add(resetBtn);
 	}
 	
 	//One method to do what all the buttons do
